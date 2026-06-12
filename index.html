@@ -3,131 +3,502 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masoom Sakina | Data Science Portfolio</title>
+    <title>Masoom Sakina | Data Scientist & Data Engineer Portfolio</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #f8f9fa;
-            --text-color: #212529;
-            --primary-color: #2b5c8f;
-            --card-bg: #ffffff;
+            --bg-deep: #060b13;
+            --bg-grid-line: #0f1c2e;
+            --card-bg: #0b1523;
+            --card-border: #132a4a;
+            --accent-cyan: #00f2ff;
+            --accent-blue: #0088ff;
+            --text-main: #e2e8f0;
+            --text-muted: #748da6;
+            --code-text: #172d4c;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-deep);
+            background-image: 
+                linear-gradient(var(--bg-grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--bg-grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Abstract Terminal Code Background Overlay */
+        .code-bg-element {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--code-text);
+            user-select: none;
+            z-index: -1;
+            white-space: pre;
+            pointer-events: none;
+        }
+        .code-top-left { top: 20px; left: 20px; }
+        .code-top-right { top: 20px; right: 20px; }
+
+        /* HEADER SECTION */
         header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2b5c8f 100%);
-            color: white;
+            position: relative;
+            padding: 4rem 1rem 2rem 1rem;
             text-align: center;
-            padding: 5rem 1rem;
         }
-        header h1 { margin: 0; font-size: 2.5rem; }
-        header p { font-size: 1.2rem; opacity: 0.9; margin-top: 0.5rem; }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 2rem 1rem;
+
+        .avatar-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 1.5rem auto;
         }
-        section {
-            background: var(--card-bg);
-            padding: 2rem;
-            margin-bottom: 2rem;
+
+        .avatar-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--accent-cyan);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.6), inset 0 0 15px rgba(0, 242, 255, 0.4);
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            padding: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        header h1 span {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
+
+        /* CYBER NAVIGATION BAR */
+        nav {
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            background-color: rgba(6, 11, 19, 0.85);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.75rem 1rem;
+        }
+
+        .nav-container a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+        .nav-container a:hover, .nav-container a.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 8px rgba(0, 242, 255, 0.5);
+        }
+
+        /* MAIN CONTENT LAYOUT */
+        .main-wrapper {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .main-wrapper {
+                grid-template-columns: 320px 1fr;
+            }
+        }
+
+        /* SIDEBAR PANEL */
+        .sidebar-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 0.5rem;
-            margin-top: 0;
+
+        .panel h2 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--card-border);
+            letter-spacing: 0.5px;
         }
-        .skills-list {
+
+        /* Interactive Dynamic Dialog System UI Links */
+        .cyber-link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .interactive-node {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .trigger-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: transform 0.2s, filter 0.2s;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .trigger-btn:hover {
+            transform: translateX(4px);
+            filter: brightness(1.15);
+        }
+
+        .btn-gmail { background: linear-gradient(135deg, #c53929 0%, #a82e21 100%); }
+        .btn-linkedin { background: linear-gradient(135deg, #006699 0%, #004b72 100%); }
+        .btn-github { background: linear-gradient(135deg, #1c2128 0%, #0d1117 100%); border-color: #30363d; }
+
+        /* Terminal Output Box Component */
+        .terminal-display-bubble {
+            background-color: #050a12;
+            border: 1px solid #162f56;
+            border-radius: 6px;
+            padding: 0.75rem;
+            position: relative;
+            margin-top: 0.25rem;
+        }
+
+        .bubble-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+            font-weight: bold;
+        }
+
+        .bubble-header i {
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            cursor: pointer;
+        }
+
+        .bubble-body {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            word-break: break-all;
+            background: rgba(0,0,0,0.3);
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            border-left: 2px solid var(--accent-cyan);
+        }
+
+        /* MAIN COLUMN CONTENT */
+        .content-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Project Cards */
+        .project-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .cyber-card {
+            background-color: #09101a;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            position: relative;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .cyber-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+        }
+
+        .cyber-card h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .tag-meta {
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .cyber-card ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .cyber-card li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Tech Badges */
+        .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            padding: 0;
             list-style: none;
         }
-        .skills-list li {
-            background: #e2e8f0;
-            padding: 0.4rem 0.8rem;
+
+        .tech-tags li {
+            background-color: #0e1a2b;
+            color: #94a3b8;
+            border: 1px solid var(--card-border);
+            padding: 0.3rem 0.75rem;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
         }
-        .project-card {
-            border-left: 4px solid var(--primary-color);
-            padding-left: 1rem;
-            margin-bottom: 1.5rem;
+
+        .tech-tags li.hl-tag {
+            border-color: #2b3b68;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #09101a 0%, #131f33 100%);
         }
-        .project-card h3 { margin: 0 0 0.5rem 0; color: #1e3c72; }
-        a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 2rem; color: #6c757d; font-size: 0.9rem; }
+
+        /* Animation */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; box-shadow: 0 0 35px rgba(0, 242, 255, 0.8), inset 0 0 20px rgba(0, 242, 255, 0.5); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--code-text);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Back-layer Decorative Terminal Code Snippets -->
+    <div class="code-bg-element code-top-left">&lt;html&gt;&#10;&lt;about&#10;  founder="195"&#10;  input="Dencaer"&#10;/&gt;&#10;&lt;/about&gt;</div>
+    <div class="code-bg-element code-top-right">#b1e1&#10;&lt;head&gt;&#10;  &lt;div class="content"&gt;&#10;  &lt;scts name="stcoase"&gt;</div>
+
+    <!-- MAIN PORTFOLIO HEADER -->
     <header>
-        <h1>Masoom Sakina</h1>
-        <p>Data Science Student & Aspiring Machine Learning Engineer</p>
+        <div class="avatar-container">
+            <div class="avatar-glow"></div>
+            <!-- Links Directly to Verbatim Requested Profile Asset Image -->
+            <img src="WhatsApp Image 2026-06-05 at 9.33.24 PM.jpeg" alt="Masoom Sakina" class="profile-img">
+        </div>
+        <h1>MASOOM <span>SAKINA</span></h1>
     </header>
 
-    <div class="container">
+    <!-- SECTION INTERACTIVE ANCHORS -->
+    <nav>
+        <div class="nav-container">
+            <a href="#about" class="active">About</a>
+            <a href="#skills">Technical Skills</a>
+            <a href="#projects">Projects Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- INTERACTIVE CYBER INTERFACE LAYOUT CONTAINER -->
+    <div class="main-wrapper">
         
-        <section id="about">
-            <h2>About Me</h2>
-            <p>
-                Hi! I am a Data Science student currently in my 6th semester. 
-                I focus on building clean machine learning pipelines, optimizing complex classification models, 
-                and designing robust data architectures. I enjoy translating complex algorithmic logic 
-                into actionable insights and deployment-ready data engineering solutions.
-            </p>
-        </section>
-
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <ul class="skills-list">
-                <li>Python</li>
-                <li>SQL (PostgreSQL)</li>
-                <li>Machine Learning (Random Forest, LightGBM)</li>
-                <li>Explainable AI (SHAP Metrics)</li>
-                <li>Data Engineering & ETL Pipelines</li>
-                <li>Time Series Analysis</li>
-            </ul>
-        </section>
-
-        <section id="projects">
-            <h2>Featured Projects</h2>
+        <!-- SIDE PANEL CONTROL INTERFACE -->
+        <div class="sidebar-panel">
             
-            <div class="project-card">
-                <h3>Census-Income (KDD) Classification Framework</h3>
-                <p>Developed an end-to-end machine learning pipeline to handle highly imbalanced demographic data. Implemented rigorous data cleaning, specialized class imbalance mitigation techniques, and compared ensemble models to highly optimize predictive performance.</p>
-            </div>
+            <section class="panel" id="contact">
+                <h2>Contact Node</h2>
+                <div class="cyber-link-group">
+                    
+                    <!-- GMAIL TERMINAL CELL -->
+                    <div class="interactive-node">
+                        <a href="mailto:masoomsakina88@gmail.com" class="trigger-btn btn-gmail">
+                            <i class="fa-solid fa-envelope"></i> Gmail
+                        </a>
+                        <div class="terminal-display-bubble">
+                            <div class="bubble-header">Gmail Address <i class="fa-solid fa-xmark"></i></div>
+                            <div class="bubble-body">masoomsakina88@gmail.com</div>
+                        </div>
+                    </div>
 
-            <div class="project-card">
-                <h3>Multi-Frequency Data Fusion Pipeline</h3>
-                <p>Constructed automated ETL pipelines utilizing PostgreSQL for seamless data ingestion. Handled multi-frequency streaming synchronization, implemented strict database schemas, and ensured perfect UTC time synchronization across financial datasets.</p>
-            </div>
-        </section>
+                    <!-- LINKEDIN TERMINAL CELL -->
+                    <div class="interactive-node">
+                        <a href="https://www.linkedin.com/in/masoom-sakina-470119325" target="_blank" class="trigger-btn btn-linkedin">
+                            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <div class="terminal-display-bubble">
+                            <div class="bubble-header">LinkedIn Profile <i class="fa-solid fa-xmark"></i></div>
+                            <div class="bubble-body">linkedin.com/in/masoom-sakina-470119325</div>
+                        </div>
+                    </div>
 
-        <section id="contact">
-            <h2>Contact & Links</h2>
-            <p>Let's connect! You can check out my work or reach out to me through the links below:</p>
-            <p>
-                📧 Email: <a href="mailto:your.email@example.com">your.email@example.com</a> &nbsp;|&nbsp; 
-                💼 LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a>
-            </p>
-        </section>
+                    <!-- GITHUB TERMINAL CELL -->
+                    <div class="interactive-node">
+                        <a href="https://github.com/MasoomSakina" target="_blank" class="trigger-btn btn-github">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <div class="terminal-display-bubble">
+                            <div class="bubble-header">GitHub Profile <i class="fa-solid fa-xmark"></i></div>
+                            <div class="bubble-body">https://github.com/MasoomSakina</div>
+                        </div>
+                    </div>
 
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2>Academic Node</h2>
+                <p style="font-weight: 600; font-size: 0.95rem; color: #fff; margin-bottom: 0.2rem;">Emerson University Multan</p>
+                <p style="color: var(--accent-cyan); font-size: 0.85rem; font-weight: bold; margin-bottom: 0.4rem;">BS Data Science</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Academic Standing: 6th Semester (CGPA: 3.6)</p>
+            </section>
+
+        </div>
+
+        <!-- MAIN HUB WINDOW DISPLAY -->
+        <div class="content-panel">
+            
+            <!-- OVERVIEW CONSOLE -->
+            <section class="panel" id="about">
+                <h2>About Me</h2>
+                <div class="about-text">
+                    Data Science professional specializing in robust engineering infrastructures. Competent in deploying pipeline logic patterns, multi-source Data Warehouse relational blueprints, and high-performance Machine Learning setups explicitly layered for Explainable Artificial Intelligence transparency metrics.
+                </div>
+            </section>
+
+            <!-- PROJECTS STREAM CONSOLE -->
+            <section class="panel" id="projects">
+                <h2>Projects Portfolio</h2>
+                <div class="project-stream">
+                    
+                    <div class="cyber-card">
+                        <h3>Explainable Ensemble Framework for Adaptive Financial Market Prediction</h3>
+                        <div class="tag-meta">Final Year Capstone Project</div>
+                        <ul>
+                            <li>Engineered a multi-layered ML architecture combining unsupervised market regime clustering with deep supervised ensemble classifiers (LightGBM, Random Forest, XGBoost).</li>
+                            <li>Built an automated data ingestion framework connecting live market web sockets (Binance, macro indicators) with automated UTC synchronization.</li>
+                            <li>Deployed a full-stack dashboard featuring SHAP metrics and LIME frameworks to provide real-time Explainable AI (XAI) feature transparency.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cyber-card">
+                        <h3>E-Commerce DWBI & Operational Analytics System</h3>
+                        <div class="tag-meta">Data Warehousing & BI Semester Project</div>
+                        <ul>
+                            <li>Designed a multi-dimensional relational database schema using a customized Star Schema consisting of explicitly defined Fact Tables and Dimensions.</li>
+                            <li>Developed visual data engineering ETL workflows via KNIME Analytics Platform containing file ingestion, missing-value handlers, and PostgreSQL writing mechanisms.</li>
+                            <li>Configured staging database layers to extract, clean, denormalize, and migrate raw, messy records securely into a structured local data warehouse instance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cyber-card">
+                        <h3>Scholar’s Assistant: Automated Literature Review System</h3>
+                        <div class="tag-meta">Software Engineering & SRS Architecture</div>
+                        <ul>
+                            <li>Authored a detailed IEEE standard Software Requirements Specification (SRS) highlighting architectural dependencies, data dictionaries, and operational bounds.</li>
+                            <li>Modeled full interaction pipelines using detailed Unified Modeling Language (UML) structural assets including Use Case Diagrams, System Sequences, and Entity Relationship Diagrams (ERD).</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CORE SKILLS MATRIX -->
+            <section class="panel" id="skills">
+                <h2>Technical Skills Matrix</h2>
+                <ul class="tech-tags">
+                    <li class="hl-tag">Ensemble Machine Learning</li>
+                    <li class="hl-tag">Explainable AI (SHAP / LIME)</li>
+                    <li class="hl-tag">Data Warehouse Design</li>
+                    <li>ETL Pipeline Construction</li>
+                    <li>Relational Databases (PostgreSQL)</li>
+                    <li>UML System Modeling</li>
+                    <li>Requirements Engineering (SRS)</li>
+                    <li>Time Series Analytics</li>
+                </ul>
+            </section>
+
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Masoom Sakina. Built with GitHub Pages.</p>
+        &copy; 2026 Masoom Sakina. Designed for global impact.
     </footer>
 
 </body>
