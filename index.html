@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masoom Sakina | Data Science Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --primary-color: #2b5c8f;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2b5c8f 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; margin-top: 0.5rem; }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem 1rem;
+        }
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0;
+            list-style: none;
+        }
+        .skills-list li {
+            background: #e2e8f0;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .project-card {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .project-card h3 { margin: 0 0 0.5rem 0; color: #1e3c72; }
+        a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 2rem; color: #6c757d; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Masoom Sakina</h1>
+        <p>Data Science Student & Aspiring Machine Learning Engineer</p>
+    </header>
+
+    <div class="container">
+        
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                Hi! I am a Data Science student currently in my 6th semester. 
+                I focus on building clean machine learning pipelines, optimizing complex classification models, 
+                and designing robust data architectures. I enjoy translating complex algorithmic logic 
+                into actionable insights and deployment-ready data engineering solutions.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <ul class="skills-list">
+                <li>Python</li>
+                <li>SQL (PostgreSQL)</li>
+                <li>Machine Learning (Random Forest, LightGBM)</li>
+                <li>Explainable AI (SHAP Metrics)</li>
+                <li>Data Engineering & ETL Pipelines</li>
+                <li>Time Series Analysis</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="project-card">
+                <h3>Census-Income (KDD) Classification Framework</h3>
+                <p>Developed an end-to-end machine learning pipeline to handle highly imbalanced demographic data. Implemented rigorous data cleaning, specialized class imbalance mitigation techniques, and compared ensemble models to highly optimize predictive performance.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Multi-Frequency Data Fusion Pipeline</h3>
+                <p>Constructed automated ETL pipelines utilizing PostgreSQL for seamless data ingestion. Handled multi-frequency streaming synchronization, implemented strict database schemas, and ensured perfect UTC time synchronization across financial datasets.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact & Links</h2>
+            <p>Let's connect! You can check out my work or reach out to me through the links below:</p>
+            <p>
+                📧 Email: <a href="mailto:your.email@example.com">your.email@example.com</a> &nbsp;|&nbsp; 
+                💼 LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a>
+            </p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Masoom Sakina. Built with GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
